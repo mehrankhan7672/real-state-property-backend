@@ -29,8 +29,8 @@ app.options("*", cors());
 //routes
 app.use("/",router)
 //auth routes
-app.use('/',router)
-app.use('/',router)
+app.use('/api',router)
+app.use('/api',router)
 //get all users
 app.use('/users',protect,router)
 //get file
