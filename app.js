@@ -20,7 +20,7 @@ const { protect } = require("./src/middleware/authMiddleware");
 app.use(express.json());
 // ⚡ Enable CORS
 app.use(cors({
-  origin: ["https://real-state-property-backend.vercel.app","https://real-state-property-seven.vercel.app"],
+  origin: "https://real-state-property-seven.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
