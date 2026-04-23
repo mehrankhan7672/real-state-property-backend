@@ -14,31 +14,20 @@ const cors = require("cors");
 const app = express();
 dotenv.config();
 connectDB();
-const cors = require("cors");
 
-// MUST be first
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://real-state-property-seven.vercel.app");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
-
+// Middleware
+const { protect } = require("./src/middleware/authMiddleware");
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// handle preflight properly
-app.options("*", cors());
+// ⚡ Enable CORS
+app.use(cors({
+  origin: "http://localhost:5173", // allow only your frontend
+  credentials: true,               // allow cookies if needed
+}));
 //routes
 app.use("/",router)
 //auth routes
-app.use('/api',router)
-app.use('/api',router)
+app.use('/login',router)
+app.use('/register',router)
 //get all users
 app.use('/users',protect,router)
 //get file
