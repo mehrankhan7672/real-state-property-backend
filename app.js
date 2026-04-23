@@ -20,14 +20,17 @@ const { protect } = require("./src/middleware/authMiddleware");
 app.use(express.json());
 // ⚡ Enable CORS
 app.use(cors({
-  origin: "http://localhost:5173", // allow only your frontend
-  credentials: true,               // allow cookies if needed
+  origin: "https://real-state-property-seven.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 }));
+
+app.options("*", cors());
 //routes
 app.use("/",router)
 //auth routes
-app.use('/login',router)
-app.use('/register',router)
+app.use('/api',router)
+app.use('/api',router)
 //get all users
 app.use('/users',protect,router)
 //get file
