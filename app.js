@@ -20,8 +20,7 @@ const { protect } = require("./src/middleware/authMiddleware");
 app.use(express.json());
 // ⚡ Enable CORS
 app.use(cors({
-  origin: "http://localhost:5173", // allow only your frontend
-  credentials: true,               // allow cookies if needed
+  origin: "*"
 }));
 //routes
 app.use("/",router)
